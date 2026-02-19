@@ -1,0 +1,206 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Lumière Atelier - Luxury Beauty Salon Design System
+   Aesthetic: Dark luxury, rich chocolate tones, gold accents
+   Inspired by high-end salon aesthetics
+   All colors in HSL format */
+
+@layer base {
+  :root {
+    /* Dark Chocolate/Brown Background - rich and luxurious */
+    --background: 20 20% 12%;
+    --foreground: 40 30% 95%;
+
+    /* Cards use slightly lighter brown */
+    --card: 20 18% 16%;
+    --card-foreground: 40 30% 95%;
+
+    /* Popovers/Modals */
+    --popover: 20 18% 16%;
+    --popover-foreground: 40 30% 95%;
+
+    /* Primary - Rich Gold accent */
+    --primary: 43 65% 55%;
+    --primary-foreground: 20 20% 10%;
+
+    /* Secondary - Warm brown */
+    --secondary: 20 15% 22%;
+    --secondary-foreground: 40 30% 95%;
+
+    /* Muted - Subtle warm tones */
+    --muted: 20 12% 20%;
+    --muted-foreground: 40 20% 70%;
+
+    /* Accent - Gold tint */
+    --accent: 43 50% 25%;
+    --accent-foreground: 40 30% 95%;
+
+    /* Destructive */
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders - Subtle gold/brown */
+    --border: 40 20% 25%;
+    --input: 40 20% 25%;
+    --ring: 43 65% 55%;
+
+    --radius: 0.5rem;
+
+    /* Custom tokens for luxury design */
+    --gold: 43 65% 55%;
+    --gold-light: 43 50% 70%;
+    --gold-dark: 43 60% 40%;
+    --charcoal: 20 20% 8%;
+    --chocolate: 20 20% 12%;
+    --chocolate-light: 20 18% 18%;
+    --cream: 40 30% 95%;
+    --cream-dark: 40 25% 88%;
+    
+    /* Glass effect for dark theme */
+    --glass-bg: 20 20% 12% / 0.9;
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 30px hsl(0 0% 0% / 0.3);
+    --shadow-medium: 0 10px 40px hsl(0 0% 0% / 0.4);
+    --shadow-gold: 0 8px 30px hsl(43 65% 55% / 0.3);
+  }
+
+  .dark {
+    --background: 20 20% 8%;
+    --foreground: 40 30% 95%;
+    --card: 20 18% 12%;
+    --card-foreground: 40 30% 95%;
+    --popover: 20 18% 12%;
+    --popover-foreground: 40 30% 95%;
+    --primary: 43 65% 55%;
+    --primary-foreground: 20 20% 10%;
+    --secondary: 20 15% 18%;
+    --secondary-foreground: 40 30% 95%;
+    --muted: 20 12% 15%;
+    --muted-foreground: 40 20% 65%;
+    --accent: 43 50% 20%;
+    --accent-foreground: 40 30% 95%;
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 40 15% 20%;
+    --input: 40 15% 20%;
+    --ring: 43 65% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    @apply tracking-tight;
+  }
+}
+
+@layer components {
+  /* Glass navigation effect for dark theme */
+  .glass-nav {
+    @apply backdrop-blur-md bg-background/90 border-b border-border/30;
+    transition: all 0.3s ease;
+  }
+
+  .glass-nav-solid {
+    @apply bg-background border-b border-border/50;
+  }
+
+  /* Gold underline accent */
+  .gold-underline {
+    @apply relative;
+  }
+
+  .gold-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-[2px] bg-primary scale-x-0 origin-right transition-transform duration-300;
+  }
+
+  .gold-underline:hover::after {
+    @apply scale-x-100 origin-left;
+  }
+
+  /* Dotted line leader for menus */
+  .dotted-leader {
+    @apply flex-1 border-b border-dotted border-muted-foreground/30 mx-4;
+  }
+
+  /* Luxury card hover */
+  .luxury-card {
+    @apply transition-all duration-500 ease-out;
+  }
+
+  .luxury-card:hover {
+    @apply -translate-y-2;
+    box-shadow: var(--shadow-gold);
+  }
+
+  /* Quote styling */
+  .quote-mark {
+    font-family: 'Playfair Display', serif;
+    @apply text-primary/40 text-8xl leading-none;
+  }
+
+  /* Gold brush stroke effect */
+  .gold-brush {
+    background: linear-gradient(135deg, hsl(var(--gold)) 0%, hsl(var(--gold-dark)) 100%);
+    @apply px-8 py-4 relative;
+    clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
+  }
+
+  /* Category card styling */
+  .category-card {
+    @apply relative overflow-hidden rounded-lg transition-all duration-500;
+  }
+
+  .category-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent z-10;
+  }
+
+  /* Service card */
+  .service-card {
+    @apply bg-card border border-border/50 rounded-lg p-6 transition-all duration-300;
+  }
+
+  .service-card:hover {
+    @apply border-primary/50 bg-card;
+    box-shadow: var(--shadow-gold);
+  }
+}
+
+@layer utilities {
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Hide scrollbar for carousel */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Text gradient for gold */
+  .text-gradient-gold {
+    background: linear-gradient(135deg, hsl(var(--gold-light)) 0%, hsl(var(--gold)) 50%, hsl(var(--gold-dark)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
